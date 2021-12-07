@@ -1,5 +1,6 @@
 - 🐱 Hi, I’m Nino
 - 🎨 I'm an UX designer
+- ⌨️ I do not code
 - 💞️ I’m here because of @Kemingy
 
 <!---
