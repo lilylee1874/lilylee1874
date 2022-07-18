@@ -1,7 +1,7 @@
 - 🐱 Hi, I’m Nino
 - 🎨 I'm an UX designer
 - ⌨️ I do not code
-- 💞️ I’m here because of @Kemingy
+- 💞️ @Kemingy 's :cat:
 
 <!---
 lilylee1874/lilylee1874 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
