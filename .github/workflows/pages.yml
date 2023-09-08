@@ -40,10 +40,10 @@ jobs:
       - name: Generate markdown
         run: |
           gh release download v0.1.0 --repo kemingy/isite -p '*Linux_x86_64*' --output isite.tar.gz
-          tar zxf isite.tar.gz
-          ./isite generate --user lilylee1874 --repo lilylee1874
+          tar zxf isite.tar.gz && mv isite /usr/local/bin
+          isite generate --user lilylee1874 --repo lilylee1874
           gh release download v0.17.2 --repo getzola/zola -p '*linux*' --output zola.tar.gz
-          tar zxf zola.tar.gz
+          tar zxf zola.tar.gz && mv zola /usr/local/bin
           cd output && zola build
       - name: Setup Pages
         uses: actions/configure-pages@v3
