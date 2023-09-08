@@ -19,14 +19,11 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -34,17 +31,22 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
+      ISITE_VERSION: v0.1.0
+      ZOLA_VERSION: v0.17.2
+      USER: ${{ github.repository_owner }}
+      REPO: ${{ github.event.repository.name }}
+      BASE_URL: https://lilylee1874.github.io
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Generate markdown
         run: |
-          gh release download v0.1.0 --repo kemingy/isite -p '*Linux_x86_64*' --output isite.tar.gz
+          gh release download $ISITE_VERSION --repo kemingy/isite -p '*Linux_x86_64*' --output isite.tar.gz
           tar zxf isite.tar.gz && mv isite /usr/local/bin
-          isite generate --user lilylee1874 --repo lilylee1874
-          gh release download v0.17.2 --repo getzola/zola -p '*linux*' --output zola.tar.gz
+          isite generate --user $USER --repo $REPO
+          gh release download $ZOLA_VERSION --repo getzola/zola -p '*linux*' --output zola.tar.gz
           tar zxf zola.tar.gz && mv zola /usr/local/bin
-          cd output && zola build
+          cd output && zola build --base-url $BASE_URL
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
