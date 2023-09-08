@@ -35,7 +35,7 @@ jobs:
       ZOLA_VERSION: v0.17.2
       USER: ${{ github.repository_owner }}
       REPO: ${{ github.event.repository.name }}
-      BASE_URL: https://lilylee1874.github.io
+      BASE_URL: https://$USER.github.io/$REPO
     steps:
       - name: Checkout
         uses: actions/checkout@v3
